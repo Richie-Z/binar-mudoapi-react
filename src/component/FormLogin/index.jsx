@@ -3,33 +3,34 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
-function FormLogin(){
+function FormLogin() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [loginStatus, setLoginStatus] = useState('')
 
-    function handleUsername(e){
+    function handleUsername(e) {
+        setLoginStatus('')
         setUsername(e.target.value)
     }
 
-    function handlePassword(e){
+    function handlePassword(e) {
+        setLoginStatus('')
         setPassword(e.target.value)
     }
 
-    function handleLogin(){
+    function handleLogin() {
         const bodyPayload = {
             username: username,
             password: password
         }
 
         axios.post(`https://api.mudoapi.tech/login`, bodyPayload)
-        .then(res => {
-            setLoginStatus(res.data.message)
-        })
-        .catch(err => {
-            console.log(err.response)
-            setLoginStatus(err.response)
-        })
+            .then(res => {
+                setLoginStatus(res.data.message)
+            })
+            .catch(err => {
+                setLoginStatus(err.response.data.message)
+            })
     }
 
     return (
@@ -47,7 +48,7 @@ function FormLogin(){
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" onChange={handlePassword}/>
+                    <Form.Control type="password" placeholder="Password" onChange={handlePassword} />
                 </Form.Group>
                 <Button variant="primary" onClick={handleLogin}>
                     Login
