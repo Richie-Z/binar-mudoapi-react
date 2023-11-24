@@ -1,11 +1,11 @@
 import NavBar from "../../component/Navbar"
 import FormLogin from "../../component/FormLogin"
 
-function Login(){
+function Login() {
     return (
         <>
-            <NavBar/>
-            <FormLogin/>
+            <NavBar />
+            <FormLogin />
         </>
     )
 }

@@ -16,10 +16,10 @@ const ListMenu = () => {
 
     const getMenus = (dataName, dataType) => {
         axios.get(`https://api.mudoapi.tech/menus?name=${dataName}&type=${dataType}`)
-        .then(res => {
-            setMenus(res.data.data.Data)
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                setMenus(res.data.data.Data)
+            })
+            .catch(err => console.log(err))
     }
 
     const handleSubmit = (e) => {
@@ -59,9 +59,9 @@ const ListMenu = () => {
                                 <option value={"main-dish"}>Makanan</option>
                             </select>
                         </div>
-                        
+
                         {
-                            
+
                             reset ? (
                                 <div className="col-sm col-md-2 d-flex align-items-end">
                                     <button type="button" className="btn btn-success" onClick={resetMenu}>Reset</button>
@@ -73,26 +73,26 @@ const ListMenu = () => {
                             )
                         }
 
-                       
-                        
+
+
 
                     </div>
                 </div>
                 <div className="justify-content-center">
-                    { menus.length ? (
-                            menus.map((menu, id) => (
-                                <div key={id}>
-                                    <div >
-                                        <h1>{menu.name} </h1>
-                                        <h2>{menu.description}</h2>
-                                    </div>
-                                    <Link to={`menu/${menu.id}`}>
-                                        <button>detail</button>
-                                    </Link>
-                                </div>    
-                            ))
-                        ) : (
-                            <h1></h1>
+                    {menus.length ? (
+                        menus.map((menu, id) => (
+                            <div key={id}>
+                                <div >
+                                    <h1>{menu.name} </h1>
+                                    <h2>{menu.description}</h2>
+                                </div>
+                                <Link to={`menu/${menu.id}`}>
+                                    <button>detail</button>
+                                </Link>
+                            </div>
+                        ))
+                    ) : (
+                        <h1></h1>
                     )
                     }
                 </div>
